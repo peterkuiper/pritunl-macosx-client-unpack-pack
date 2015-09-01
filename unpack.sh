@@ -9,7 +9,6 @@ rm -f Pritunl.pkg.zip && wget https://github.com/pritunl/pritunl-client-electron
 rm -f Pritunl.pkg && unzip Pritunl.pkg.zip
 mkdir -p $BUILD_DIR && cd $BUILD_DIR && rm -rf Pritunl.unpkg
 
-
 # Unpack original package
 pkgutil --expand ../Pritunl.pkg Pritunl.unpkg
 mkdir -p $BUILD_DIR/Pritunl.pkg && cd $BUILD_DIR/Pritunl.pkg
