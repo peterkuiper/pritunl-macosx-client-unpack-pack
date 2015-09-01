@@ -18,6 +18,9 @@ NUMBER_OF_FILES=$(find $BUILD_DIR/Pritunl.pkg/ | wc | awk -F ' ' ' { print $1 } 
 sed -E "s/(numberOfFiles=)\".*\" (installKBytes=)\".*\"/\1\"$NUMBER_OF_FILES\" \2\"$INSTALL_BYTES\"/" \
     $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo > $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo.tmp
 
+# Overwrite old PackageInfo file
+mv $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo.tmp $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo
+
 # Recreate package
 pkgutil --flatten $BUILD_DIR/Pritunl.unpkg/ $TMP_DIR/Pritunl.new.pkg
 
