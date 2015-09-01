@@ -12,8 +12,8 @@ find . | cpio -o --format odc | gzip -c \
 mkbom $BUILD_DIR/Pritunl.pkg $BUILD_DIR/Pritunl.unpkg/Build.pkg/Bom
 
 # Get installBytes and numberOfFiles
-INSTALL_BYTES=$(expr $(du -sk ~/tmp/build/Pritunl.pkg/ | awk -F ' ' ' { print $1 } ') - 4)
-NUMBER_OF_FILES=`find ~/tmp/build/Pritunl.pkg/ | wc | awk -F ' ' ' { print $1 } '`
+INSTALL_BYTES=$(expr $(du -sk $BUILD_DIR/Pritunl.pkg/ | awk -F ' ' ' { print $1 } ') - 4)
+NUMBER_OF_FILES=`find $BUILD_DIR/Pritunl.pkg/ | wc | awk -F ' ' ' { print $1 } '`
 
 sed -E "s/(numberOfFiles=)\".*\" (installKBytes=)\".*\"/\1\"$NUMBER_OF_FILES\" \2\"$INSTALL_BYTES\"/" \
     $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo > $BUILD_DIR/Pritunl.unpkg/Build.pkg/PackageInfo.tmp
